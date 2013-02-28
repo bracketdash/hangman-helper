@@ -24,7 +24,11 @@ function buildPtrn(lvl){
 
 // build each dictionary tree
 for(var x=4;x<9;x++){
-	var str = '{'+dict[x].replace(/([a-z])(?![A-Z])/g,"\"$1\":{").replace(/([a-z])(?![^A-Z])/g,"\"$1\":").replace(/([A-Z]+)/g,"\"$1\"").toLowerCase().replace(/""([a-z])":"/g,"\",\"$1\":\"");
+	var str = dict[x].replace(/([a-z])(?![A-Z])/g,"\"$1\":{");
+	str = str.replace(/([a-z])(?![^A-Z])/g,"\"$1\":");
+	str = str.replace(/([A-Z]+)/g,"\"$1\"").toLowerCase()
+	str = str.replace(/""([a-z])":"/g,"\",\"$1\":\"");
+	str = '{' + str;
 	for(var y=2;y<8;y++){
 		if(x > y){
 			str = str.replace(buildPtrn(y),buildRplcr(y));
