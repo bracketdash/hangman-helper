@@ -1,3 +1,15 @@
+// use a legend to decipher the compressed dictionary strings
+var legend = [["`","eD"],["~","inG"],["1","erS"],["!","eS"],["2","eR"],["@","tS"],["3","Si"],["#","es"],["4","nS"],["$","lY"],["5","lE"],["%","So"],["6","ra"],["^","tE"],["7","nG"],["&","la"],["8","RS"],["*","iC"],["9","lS"],["(","in"],["0","aL"],[")","ea"],["-","en"],["_","dS"],["=","ma"],["+","ta"],["[","rS"],["{","oN"],["]","sE"],["}","er"],["|","li"],[";","uS"],[":","kS"],["'","ic"],[",","ch"],["<","sT"],[".","gS"],[">","eN"],["/","sH"],["?","na"]];
+for(var y=4;y<9;y++){
+	var str = dict[y];
+	for(var x=0;x<40;x++){
+		var esc = isNaN(parseFloat(legend[x][0])) ? '\\' : '';
+		var pattern = new RegExp(esc+legend[x][0], "g");
+		str = str.replace(pattern, legend[x][1]);
+	}
+	dict[y] = str;
+}
+
 // build the replacer for the dictionary builder
 function buildRplcr(lvl){
 	var str = "\"";
@@ -170,7 +182,7 @@ function solver(){
 	$('.prob').html('0%').closest('.letter-prob').removeClass('known').removeClass('suggested');
 	
 	// check if the word has been solved
-	if($('#solver-slots input:visible[value=]').length == 0){
+	if($('#solver-slots input:visible').filter(function(){ return this.value == ''; }).length == 0){
 		$('#solver .status').html('Success! The word has been solved.');
 		return true;
 	}
@@ -231,7 +243,7 @@ function solver(){
 	}
 	
 	// get our known clues
-	$('#solver-slots input[value!=]').each(function(){
+	$('#solver-slots input').filter(function(){ return this.value != ''; }).each(function(){
 		$('#l-'+$(this).val().toLowerCase()).addClass('known');
 		slot[$(this).attr('id').substr(4)*1-1] = $(this).val().toLowerCase();
 	});
@@ -242,8 +254,8 @@ function solver(){
 	});
 	
 	// get the list of possible letters for each clue slot
-	$('#solver-slots input:visible[value=]').each(function(){
-		if($(this).nextAll('input:visible').length == $(this).nextAll('input:visible[value=]').length){
+	$('#solver-slots input:visible').filter(function(){ return this.value == ''; }).each(function(){
+		if($(this).nextAll('input:visible').length == $(this).nextAll('input:visible').filter(function(){ return this.value == ''; }).length){
 			slot[parseFloat($(this).attr('id').substr(4))-1] = xyz.replace(/[aeiou]/g,'');
 		} else {
 			slot[parseFloat($(this).attr('id').substr(4))-1] = xyz;
@@ -414,3 +426,8 @@ $(function(){
 		e.preventDefault();
 	});
 });
+
+
+
+
+
