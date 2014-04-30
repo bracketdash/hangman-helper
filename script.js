@@ -397,7 +397,7 @@ $(function(){
 			$(this).prev().select();
 		} else if(e.keyCode === 39){
 			$(this).next().select();
-		} else if((e.keyCode >= 65 && e.keyCode <= 90) || e.keyCode === 8 || e.keyCode === 46 || e.keyCode === 16){
+		} else if((e.keyCode >= 65 && e.keyCode <= 90) || [8, 16, 46].indexOf(e.keyCode) > -1){
 			if(e.keyCode === 16){$('.letter-prob.suggested').addClass('strike').removeClass('suggested');}
 			$('#solver .status').html('Thinking...');
 			solver();
