@@ -1,194 +1,27 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Hanging With Friends Helper</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hangman Helper</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="theme-color" content="#369" />
   </head>
   <body>
-    <div id="container">
-      <h1>Hanging With Friends Helper</h1>
-      <div id="builder">
-        <form name="builder" autocomplete="off">
-          <h4>Select bonus position and type:</h4>
-          <div id="bonus-container">
-            <div class="bonus-position square-box" id="bp-1">1</div>
-            <div class="bonus-position square-box" id="bp-2">2</div>
-            <div class="bonus-position square-box" id="bp-3">3</div>
-            <div class="bonus-position square-box" id="bp-4">4</div>
-            <div class="bonus-position square-box" id="bp-5">5</div>
-            <div class="bonus-position square-box" id="bp-6">6</div>
-            <div class="bonus-position square-box" id="bp-7">7</div>
-            <div class="bonus-position square-box" id="bp-8">8</div>
-            <div class="bonus-position reset" id="bp-x">Reset</div>
-            <div id="bonus-type-container">
-              <div class="bonus-type">DL</div>
-              <div class="bonus-type">DW</div>
-              <div class="bonus-type">TL</div>
-              <div class="bonus-type">TW</div>
-            </div>
-          </div>
-          <h4>Enter the letters of your tray:</h4>
-          <div id="tray-container">
-            <input type="text" maxlength="12" id="tray" />
-          </div>
-          <div class="status">
-            Press enter once you have input your tray to view possible words.
-          </div>
-          <div class="results-container">
-            <div class="results"></div>
-            <div class="clear"></div>
-          </div>
-        </form>
+    <main class="app-container">
+      <div class="header">
+        <h1>Hangman Helper</h1>
       </div>
-      <div id="solver">
-        <form name="solver" autocomplete="off">
-          <h4>Select the length of the word:</h4>
-          <div id="word-length-container">
-            <div class="word-length square-box" id="wl-4">4</div>
-            <div class="word-length square-box" id="wl-5">5</div>
-            <div class="word-length square-box" id="wl-6">6</div>
-            <div class="word-length square-box" id="wl-7">7</div>
-            <div class="word-length square-box selected" id="wl-8">8</div>
-            <div class="reset" id="wl-x">Reset</div>
-          </div>
-          <h4>Fill in known slots:</h4>
-          <div id="solver-slots">
-            <input type="text" maxlength="1" id="slot1" />
-            <input type="text" maxlength="1" id="slot2" />
-            <input type="text" maxlength="1" id="slot3" />
-            <input type="text" maxlength="1" id="slot4" />
-            <input type="text" maxlength="1" id="slot5" />
-            <input type="text" maxlength="1" id="slot6" />
-            <input type="text" maxlength="1" id="slot7" />
-            <input type="text" maxlength="1" id="slot8" />
-          </div>
-          <div class="status">
-            Probabilities will update automatically. Click on a letter to mark
-            it as a strike.
-          </div>
-          <div class="results-container">
-            <div class="results">
-              <div class="letter-prob" id="l-a">
-                <div class="letter">A</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-b">
-                <div class="letter">B</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-c">
-                <div class="letter">C</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-d">
-                <div class="letter">D</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-e">
-                <div class="letter">E</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-f">
-                <div class="letter">F</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-g">
-                <div class="letter">G</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-h">
-                <div class="letter">H</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-i">
-                <div class="letter">I</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-j">
-                <div class="letter">J</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-k">
-                <div class="letter">K</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-l">
-                <div class="letter">L</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-m">
-                <div class="letter">M</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-n">
-                <div class="letter">N</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-o">
-                <div class="letter">O</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-p">
-                <div class="letter">P</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-q">
-                <div class="letter">Q</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-r">
-                <div class="letter">R</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-s">
-                <div class="letter">S</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-t">
-                <div class="letter">T</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-u">
-                <div class="letter">U</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-v">
-                <div class="letter">V</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-w">
-                <div class="letter">W</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-x">
-                <div class="letter">X</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-y">
-                <div class="letter">Y</div>
-                <div class="prob">0%</div>
-              </div>
-              <div class="letter-prob" id="l-z">
-                <div class="letter">Z</div>
-                <div class="prob">0%</div>
-              </div>
-            </div>
-            <div class="clear"></div>
-          </div>
-        </form>
+      <div class="container">
+        <textarea
+          maxlength="60"
+          placeholder="PL?CEH?LDER B??RD F?R EX?MPLE"
+        ></textarea>
+        <div class="letters"></div>
       </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
-    <script src="dictionary.js"></script>
-    <script src="script.js"></script>
+    </main>
+    <script src="compressedTrie.js"></script>
+    <script src="solver.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>

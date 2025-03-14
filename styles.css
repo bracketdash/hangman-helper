@@ -1,0 +1,111 @@
+html,
+body {
+  background-color: #fff;
+  font-family: "Helvetica", "Arial", "Verdana", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.header {
+  background-color: #369;
+  padding: 10px 0;
+}
+
+.header > h1 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0;
+  text-align: center;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+  user-select: none;
+  width: 350px;
+}
+
+textarea {
+  border-radius: 6px;
+  font-size: 20px;
+  padding: 10px;
+  resize: none;
+  text-align: center;
+  width: calc(100% - 22px);
+}
+
+.letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.letters > div {
+  background-color: #369;
+  border-radius: 6px;
+  border: 1px solid #0005;
+  color: #fff;
+  cursor: pointer;
+  width: 60px;
+}
+
+.letters > div:not(.on-board):hover {
+  background-color: #47a;
+}
+
+.letters > div:not(.on-board):active {
+  background-color: #258;
+}
+
+.letter {
+  border-bottom: 1px solid #0005;
+  font-size: 18px;
+  line-height: 32px;
+  text-transform: uppercase;
+}
+
+.probability {
+  font-size: 13px;
+  line-height: 24px;
+}
+
+.letters > div.on-board {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.letters > div.crossed-off {
+  background-color: #900;
+}
+
+.letters > div.crossed-off:hover {
+  background-color: #a11;
+}
+
+.letters > div.crossed-off:active {
+  background-color: #800;
+}
+
+.crossed-off > .letter {
+  text-decoration: line-through;
+}
+
+.letters > div.suggested {
+  background-color: #538d4e;
+}
+
+.letters > div.suggested:hover {
+  background-color: #695;
+}
+
+.letters > div.suggested:active {
+  background-color: #473;
+}
