@@ -30,7 +30,11 @@ function checkBoard() {
     .replace(/[^A-Z ?-]/g, "")
     .replace(/[\s-]+/g, " ")
     .split(" ");
-  if (used.length === 26 || (board.length < 2 && !board[0].length)) {
+  if (
+    !boardTextarea.value.includes("?") ||
+    used.length === 26 ||
+    (board.length < 2 && !board[0].length)
+  ) {
     return;
   }
   const probabilities = solve(

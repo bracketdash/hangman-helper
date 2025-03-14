@@ -1,14 +1,13 @@
-// TODO: update compressTrie.js to include single letter words, conjunctions, etc.
-
-function getTrie() {
-  const replaced = compressedTrie
-    .replace(/([a-z])/g, '"$1":{')
-    .replace(/([0-9]+)/g, (num) => "}".repeat(parseInt(num)))
-    .replace(/_/g, '"_":1');
-  return JSON.parse("{" + replaced);
+function getTrie(compressed) {
+  let decompressed = compressed;
+  decompressed = decompressed.replace(/([a-z])/g, '"$1":{');
+  const getEndBrackets = (c) => "}".repeat(parseInt(c, 10));
+  decompressed = decompressed.replace(/([0-9]+)/g, getEndBrackets);
+  decompressed = decompressed.replaceAll("$", '"$":1');
+  return JSON.parse(decompressed);
 }
 
-const trie = getTrie();
+const trie = getTrie(compressedTrie);
 
 function solve(board, unused) {
   // TODO: return letter probabilities
