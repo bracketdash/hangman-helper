@@ -27,7 +27,8 @@ function checkBoard() {
     letterbox.querySelector(".probability").innerHTML = "-";
   });
   const board = boardTextarea.value
-    .replace(/[^A-Z ?-]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z ?-]/g, "")
     .replace(/[\s-]+/g, " ")
     .split(" ");
   if (
