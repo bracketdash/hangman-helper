@@ -10,10 +10,19 @@ function getTrie(compressed) {
 const trie = getTrie(compressedTrie);
 
 function solve(board, unused) {
-  // TODO: return letter probabilities
-  console.log("board:");
-  console.log(board);
-  console.log("unused:");
-  console.log(unused);
-  return { a: 0.5, e: 0.5 };
+  console.log(`board: ${board.join(", ")}`);
+  console.log(`unused: ${unused.join("")}`);
+  const tallies = {};
+  // TODO: count up how many times each letter shows up in the "?" spots for word completions
+  board.forEach((word) => {
+    // TODO: get all possible words that fit from the trie
+    // TODO: for each "?", count up letter frequency in possible words and add to the total in tallies[letter]
+  });
+  const probabilities = {};
+  const reduceSum = (sum, current) => sum + current;
+  const grandTotal = Object.values(tallies).reduce(reduceSum, 0);
+  Object.entries(tallies).forEach((letter, tally) => {
+    probabilities[letter] = tally / grandTotal;
+  });
+  return probabilities;
 }

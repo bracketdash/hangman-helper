@@ -38,7 +38,7 @@ function checkBoard() {
     return;
   }
   const probabilities = solve(
-    board,
+    board.filter((word) => word.includes("?")),
     alphabet.filter((letter) => !used.includes(letter))
   );
   const probsOnly = Object.values(probabilities).sort((a, b) => b - a);
